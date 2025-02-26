@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - CanteenQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="payment-wrapper">
+        <div class="payment-container">
+            <!-- Order Summary Section -->
+            <div class="order-summary">
+                <div class="summary-header">
+                    <h2><i class="fas fa-shopping-bag"></i> Order Summary</h2>
+                    <a href="menu.html" class="edit-cart"><i class="fas fa-edit"></i> Edit</a>
+                </div>
+                
+                <div class="order-items" id="order-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+
+                <div class="price-breakup">
+                    <div class="price-row">
+                        <span>Item Total</span>
+                        <span>₹<span id="item-total">0</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span>Delivery Charges</span>
+                        <span>FREE</span>
+                    </div>
+                    <div class="total-amount">
+                        <span>Total Payable</span>
+                        <span>₹<span id="payment-total">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods Section -->
+            <div class="payment-methods">
+                <h2><i class="fas fa-credit-card"></i> Payment Options</h2>
+                
+                <div class="payment-method-card active" onclick="selectPayment('upi')">
+                    <div class="method-icon">
+                        <i class="fab fa-google-pay"></i>
+                    </div>
+                    <div class="method-details">
+                        <h3>UPI</h3>
+                        <p>Pay using any UPI app</p>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+
+                <div class="payment-method-card" onclick="selectPayment('cod')">
+                    <div class="method-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="method-details">
+                        <h3>Cash on Delivery</h3>
+                        <p>Pay cash when you receive order</p>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+
+                <!-- UPI Payment Details -->
+                <div class="payment-details" id="upi-details">
+                    <div class="input-group">
+                        <label>Enter UPI ID:</label>
+                        <input type="text" placeholder="yourname@upi" id="upi-id">
+                    </div>
+                    <button class="pay-now-btn" onclick="processPayment()">
+                        <i class="fas fa-lock"></i> Pay Now
+                    </button>
+                </div>
+
+                <!-- COD Message -->
+                <div class="cod-message" id="cod-message">
+                    <i class="fas fa-info-circle"></i>
+                    Pay cash to the delivery partner when you receive your order
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize payment page
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItems = document.getElementById('order-items');
+            let total = 0;
+
+            // Populate order items
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                orderItems.innerHTML += `
+                    <div class="order-item">
+                        <div class="item-info">
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-quantity">x${item.quantity}</span>
+                        </div>
+                        <span class="item-price">₹${item.price * item.quantity}</span>
+                    </div>
+                `;
+            });
+
+            // Set totals
+            document.getElementById('item-total').textContent = total;
+            document.getElementById('payment-total').textContent = total;
+            
+            // Default to UPI payment
+            selectPayment('upi');
+        });
+
+        function selectPayment(method) {
+            // Remove active class from all cards
+            document.querySelectorAll('.payment-method-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Hide all payment details
+            document.querySelectorAll('.payment-details, .cod-message').forEach(el => {
+                el.style.display = 'none';
+            });
+
+            // Add active class to selected method
+            const selectedCard = document.querySelector(`[onclick="selectPayment('${method}')"]`);
+            selectedCard.classList.add('active');
+
+            // Show relevant payment details
+            if(method === 'upi') {
+                document.getElementById('upi-details').style.display = 'block';
+            } else if(method === 'cod') {
+                document.getElementById('cod-message').style.display = 'flex';
+            }
+        }
+
+        function processPayment() {
+            const paymentMethod = document.querySelector('.payment-method-card.active h3').textContent;
+            if(paymentMethod === 'UPI') {
+                const upiId = document.getElementById('upi-id').value;
+                if(!upiId.includes('@')) {
+                    alert('Please enter a valid UPI ID');
+                    return;
+                }
+            }
+            
+            alert(`Payment successful via ${paymentMethod}! Your order is being processed.`);
+            localStorage.removeItem('cart');
+            window.location.href = 'menu.html';
+        }
+    </script>
+</body>
+</html>

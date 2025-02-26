@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CanteenQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@400;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="swiggy-branding">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png" alt="Swiggy" class="logo">
+        </div>
+        <div class="auth-form">
+            <h2>Login or Signup</h2>
+            <div class="input-group">
+                <input type="text" id="mobile" placeholder="Enter Mobile Number" maxlength="10">
+            </div>
+            <button class="otp-btn" onclick="sendOTP()">Send OTP</button>
+            <div class="separator">or</div>
+            <button class="social-login google">
+                <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google">
+                Continue with Google
+            </button>
+            <button class="social-login facebook">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+                Continue with Facebook
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function sendOTP() {
+            const mobile = document.getElementById('mobile').value;
+            if(mobile.length === 10) {
+                window.location.href = 'menu.html';
+            }
+        }
+    </script>
+</body>
+</html>

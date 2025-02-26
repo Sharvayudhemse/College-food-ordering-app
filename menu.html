@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - CanteenQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="location-header">
+            <span class="location">📍 Current Location</span>
+            <div class="user-info">
+                <span id="user-name"></span>
+                <a href="index.html" class="logout">Logout</a>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search food items..." id="search-input">
+        </div>
+    </header>
+
+    <main class="menu-container">
+        <section class="food-list">
+            <!-- Beverages Section -->
+            <div class="category">
+                <h2>Beverages</h2>
+                <div class="items-grid">
+                    <div class="food-card" data-category="drink">
+                        <img src="https://picsum.photos/seed/coffee1/400/300" alt="Coffee">
+                        <div class="details">
+                            <h3>Coffee</h3>
+                            <div class="rating">⭐ 4.2 (1k+ ratings)</div>
+                            <div class="price">₹50 <button onclick="addToCart('Coffee', 50)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="drink">
+                        <img src="https://picsum.photos/seed/tea1/400/300" alt="Tea">
+                        <div class="details">
+                            <h3>Tea</h3>
+                            <div class="rating">⭐ 4.0 (800+ ratings)</div>
+                            <div class="price">₹30 <button onclick="addToCart('Tea', 30)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="drink">
+                        <img src="https://picsum.photos/seed/milkshake1/400/300" alt="Milkshake">
+                        <div class="details">
+                            <h3>Milkshake</h3>
+                            <div class="rating">⭐ 4.5 (1.2k+ ratings)</div>
+                            <div class="price">₹80 <button onclick="addToCart('Milkshake', 80)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="drink">
+                        <img src="https://picsum.photos/seed/lemonade1/400/300" alt="Lemonade">
+                        <div class="details">
+                            <h3>Lemonade</h3>
+                            <div class="rating">⭐ 4.3 (900+ ratings)</div>
+                            <div class="price">₹35 <button onclick="addToCart('Lemonade', 35)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="drink">
+                        <img src="https://picsum.photos/seed/coldcoffee1/400/300" alt="Cold Coffee">
+                        <div class="details">
+                            <h3>Cold Coffee</h3>
+                            <div class="rating">⭐ 4.6 (2k+ ratings)</div>
+                            <div class="price">₹90 <button onclick="addToCart('Cold Coffee', 90)">ADD</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Veg Specials Section -->
+            <div class="category">
+                <h2>Veg Specials</h2>
+                <div class="items-grid">
+                    <div class="food-card" data-category="veg">
+                        <img src="https://picsum.photos/seed/vegburger1/400/300" alt="Veg Burger">
+                        <div class="details">
+                            <h3>Veg Burger</h3>
+                            <div class="rating">⭐ 4.5 (2.5k+ ratings)</div>
+                            <div class="price">₹80 <button onclick="addToCart('Veg Burger', 80)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="veg">
+                        <img src="https://picsum.photos/seed/dosa1/400/300" alt="Masala Dosa">
+                        <div class="details">
+                            <h3>Masala Dosa</h3>
+                            <div class="rating">⭐ 4.6 (3k+ ratings)</div>
+                            <div class="price">₹90 <button onclick="addToCart('Masala Dosa', 90)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="veg">
+                        <img src="https://picsum.photos/seed/paneerwrap1/400/300" alt="Paneer Wrap">
+                        <div class="details">
+                            <h3>Paneer Wrap</h3>
+                            <div class="rating">⭐ 4.7 (1.8k+ ratings)</div>
+                            <div class="price">₹120 <button onclick="addToCart('Paneer Wrap', 120)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="veg">
+                        <img src="https://picsum.photos/seed/cholebhature1/400/300" alt="Chole Bhature">
+                        <div class="details">
+                            <h3>Chole Bhature</h3>
+                            <div class="rating">⭐ 4.4 (2.2k+ ratings)</div>
+                            <div class="price">₹100 <button onclick="addToCart('Chole Bhature', 100)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="veg">
+                        <img src="https://picsum.photos/seed/pavbhaji1/400/300" alt="Pav Bhaji">
+                        <div class="details">
+                            <h3>Pav Bhaji</h3>
+                            <div class="rating">⭐ 4.8 (3.5k+ ratings)</div>
+                            <div class="price">₹110 <button onclick="addToCart('Pav Bhaji', 110)">ADD</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Veg Specials Section -->
+            <div class="category">
+                <h2>Non-Veg Specials</h2>
+                <div class="items-grid">
+                    <div class="food-card" data-category="nonveg">
+                        <img src="https://picsum.photos/seed/biryani1/400/300" alt="Chicken Biryani">
+                        <div class="details">
+                            <h3>Chicken Biryani</h3>
+                            <div class="rating">⭐ 4.7 (5k+ ratings)</div>
+                            <div class="price">₹160 <button onclick="addToCart('Chicken Biryani', 160)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="nonveg">
+                        <img src="https://picsum.photos/seed/grilledchicken1/400/300" alt="Grilled Chicken">
+                        <div class="details">
+                            <h3>Grilled Chicken</h3>
+                            <div class="rating">⭐ 4.8 (2k+ ratings)</div>
+                            <div class="price">₹250 <button onclick="addToCart('Grilled Chicken', 250)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="nonveg">
+                        <img src="https://picsum.photos/seed/butterchicken1/400/300" alt="Butter Chicken">
+                        <div class="details">
+                            <h3>Butter Chicken</h3>
+                            <div class="rating">⭐ 4.9 (4k+ ratings)</div>
+                            <div class="price">₹200 <button onclick="addToCart('Butter Chicken', 200)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="nonveg">
+                        <img src="https://picsum.photos/seed/muttonkebab1/400/300" alt="Mutton Kebab">
+                        <div class="details">
+                            <h3>Mutton Kebab</h3>
+                            <div class="rating">⭐ 4.6 (1.5k+ ratings)</div>
+                            <div class="price">₹220 <button onclick="addToCart('Mutton Kebab', 220)">ADD</button></div>
+                        </div>
+                    </div>
+
+                    <div class="food-card" data-category="nonveg">
+                        <img src="https://picsum.photos/seed/fishcurry1/400/300" alt="Fish Curry">
+                        <div class="details">
+                            <h3>Fish Curry</h3>
+                            <div class="rating">⭐ 4.5 (1.2k+ ratings)</div>
+                            <div class="price">₹180 <button onclick="addToCart('Fish Curry', 180)">ADD</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Sidebar -->
+        <aside class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <span class="item-count">(<span id="cart-count">0</span> items)</span>
+            </div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="bill-details">
+                <div class="total">
+                    <span>Total Amount</span>
+                    <span>₹<span id="total-price">0</span></span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">PROCEED TO PAY</button>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>
